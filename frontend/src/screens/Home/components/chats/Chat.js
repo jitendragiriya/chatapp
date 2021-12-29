@@ -17,7 +17,7 @@ import Messages from "./Messages";
 import { uid } from "uid";
 
 let socket;
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "/";
 
 const Chat = () => {
   let workdescription =
