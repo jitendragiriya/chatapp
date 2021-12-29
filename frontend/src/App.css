@@ -1,0 +1,82 @@
+:root {
+  --white-color: #fff;
+  --white-color2: rgb(243, 241, 241);
+  --black-color: #000;
+  --black-color-light: rgba(0, 0, 0, 0.2);
+  --black-color-m-light: rgba(0, 0, 0, 0.5);
+  --blue-color: #0061fd;
+  --blue-color2: #d5e3fc;
+  --red-color:red;
+  --green-color:green;
+  
+}
+
+*,
+*::before,
+*::after {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  transition: all 0.2s linear;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-padding-top: 1rem;
+  scroll-behavior: smooth;
+  transition: none;
+  font-size: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: var(--white-color2);
+  color: var(--black-color);
+  font-weight: 400;
+  font-style: normal;
+}
+
+a {
+  color: var(--blue-color);
+}
+
+button {
+  background-color: none;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.btnPrimary {
+  margin-top: 1rem;
+  display: inline-block;
+  font-size: 1rem;
+  color: var(--white-color);
+  background: var(--black-color);
+  border-radius: 0.3rem;
+  cursor: pointer;
+  padding: 0.3rem 1.3rem;
+}
+
+.btnPrimary:hover {
+  background-color: var(--black-color);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Toastify {
+  position: fixed;
+  z-index: 10001;
+}
+
+.Toastify__toast-container--top-right {
+  margin-top: 3.5rem;
+}
