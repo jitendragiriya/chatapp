@@ -5,7 +5,12 @@ const socketIO = require("socket.io");
 const ConnectDb = require("./backend/config/db");
 const User = require("./backend/Models/UsersModel");
 
-// creating temprary users array
+// Handling Uncaught Exception
+process.on("uncaughtException",(err)=>{
+  console.log(`Error: ${err.message}`);
+  console.log(`Shutting down the server due to Uncaught Exception`);
+  process.exit(1);
+});
 
 // importing the configuration file when app is not in production.
 if (process.env.NODE_ENV !== "PRODUCTION") {
@@ -57,4 +62,12 @@ IO.on("connection", (socket) => {
 
 server.listen(PORT, () => {
   console.log(`server is listening on http://localhost:${PORT}`);
+});
+
+process.on("unhandledRejection", (err) => {
+  console.log(`error:${err.message}`);
+  console.log("sutting down the server due to unhandled promis rejection.");
+  server.close(() => {
+    process.exit(1);
+  });
 });
