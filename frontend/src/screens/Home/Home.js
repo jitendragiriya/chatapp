@@ -3,7 +3,7 @@ import "./Home.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchallPost } from "../../reduxStore/actions/PostAction";
 import Chat from "./components/Chats/Chat";
-import Post from "../../../../backend/Models/UserPost";
+import Post from './components/Posts/Post'
 import MyPost from "./components/Posts/NewPost";
 
 const Home = () => {
