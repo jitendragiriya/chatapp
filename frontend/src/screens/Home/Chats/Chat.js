@@ -20,7 +20,7 @@ import { uid } from "uid";
 import { notifyError } from "../../../utils/Messages";
 
 let socket;
-const ENDPOINT = "/";
+const ENDPOINT = "";
 
 const Chat = () => {
   const dispatch = useDispatch();
