@@ -2,9 +2,9 @@ import React, { Fragment, useEffect } from "react";
 import "./Home.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchallPost } from "../../reduxStore/actions/PostAction";
-import Post from "./components/Posts/Post";
-import MyPost from "./components/Posts/NewPost";
-import Chat from "./components/Chats/Chat";
+import Post from "./Chats/Posts/Post";
+import MyPost from "./Chats/Posts/NewPost";
+import Chat from "./Chats/Chat";
 
 const Home = () => {
   const dispatch = useDispatch();

@@ -13,11 +13,11 @@ import ScrollToBottm from "react-scroll-to-bottom";
 import Messages from "./Messages";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useDispatch, useSelector } from "react-redux";
-import { getMsgWithUsers } from "../../../../reduxStore/actions/ChatingAction";
-import { sendMessage } from "../../../../reduxStore/actions/ChatingAction";
+import { getMsgWithUsers } from "../../../reduxStore/actions/ChatingAction";
+import { sendMessage } from "../../../reduxStore/actions/ChatingAction";
 import ChattingUsers from "./ChattingUsers";
 import { uid } from "uid";
-import { notifyError } from "../../../../utils/Messages";
+import { notifyError } from "../../../utils/Messages";
 
 let socket;
 const ENDPOINT = "/";

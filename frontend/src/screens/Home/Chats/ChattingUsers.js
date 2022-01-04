@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { getOhteruserDetails } from "../../../../reduxStore/actions/UserAction";
+import { getOhteruserDetails } from "../../../reduxStore/actions/UserAction";
 import img1 from "./number-3-three-260nw-742434955-1.jpg";
 import {
   clearAllmsg,
   getAllMessages,
-} from "../../../../reduxStore/actions/ChatingAction";
+} from "../../../reduxStore/actions/ChatingAction";
 
 const ChattingUsers = ({ user }) => {
   const maxlength = 60;
