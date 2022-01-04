@@ -5,8 +5,8 @@ import CommentIcon from "@mui/icons-material/Comment";
 import ShareIcon from "@mui/icons-material/Share";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getOhteruserDetails } from "../../../../reduxStore/actions/UserAction";
-import { clearAllmsg } from "../../../../reduxStore/actions/ChatingAction";
+import { getOhteruserDetails } from "../../../reduxStore/actions/UserAction";
+import { clearAllmsg } from "../../../reduxStore/actions/ChatingAction";
 
 const Post = ({ posts }) => {
   const dispatch = useDispatch();

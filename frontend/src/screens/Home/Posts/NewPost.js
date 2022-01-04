@@ -8,8 +8,8 @@ import ArticleIcon from "@mui/icons-material/Article";
 import UploadIcon from "@mui/icons-material/Upload";
 import FileIcon from "@mui/icons-material/FileCopy";
 import { useDispatch, useSelector } from "react-redux";
-import { userNewPost } from "../../../../reduxStore/actions/PostAction";
-import { notifySuccess } from "../../../../utils/Messages";
+import { userNewPost } from "../../../reduxStore/actions/PostAction";
+import { notifySuccess } from "../../../utils/Messages";
 
 const MyPost = () => {
   const dispatch = useDispatch();
