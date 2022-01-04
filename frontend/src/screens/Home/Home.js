@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import "./Home.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchallPost } from "../../reduxStore/actions/PostAction";
-import Post from "./Chats/Posts/Post";
+import Post from "./Posts/Post";
 import MyPost from "./Chats/Posts/NewPost";
 import Chat from "./Chats/Chat";
 
