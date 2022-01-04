@@ -2,9 +2,9 @@ import React, { Fragment, useEffect } from "react";
 import "./Home.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchallPost } from "../../reduxStore/actions/PostAction";
-import Chat from "./components/Chats/Chat";
-import Post from './components/Posts/Post'
+import Post from "./components/Posts/Post";
 import MyPost from "./components/Posts/NewPost";
+import Chat from "./components/Chats/Chat";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -18,8 +18,8 @@ const Home = () => {
     <Fragment>
       <div className="home__content">
         <MyPost />
-        {post && post.map((data) => <Post key={data._id} posts={data} />)}
         <Chat />
+        {post && post.map((data) => <Post key={data._id} posts={data} />)}
       </div>
     </Fragment>
   );

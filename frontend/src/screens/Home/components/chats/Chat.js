@@ -12,7 +12,6 @@ import { io } from "socket.io-client";
 import ScrollToBottm from "react-scroll-to-bottom";
 import Messages from "./Messages";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useDispatch, useSelector } from "react-redux";
 import { getMsgWithUsers } from "../../../../reduxStore/actions/ChatingAction";
 import { sendMessage } from "../../../../reduxStore/actions/ChatingAction";
