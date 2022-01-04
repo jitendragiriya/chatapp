@@ -19,7 +19,7 @@ import {
 
 // new user register action
 export const userRegister = (formData) => async (dispatch) => {
-  const url = "http://localhost:5000/api/register";
+  const url = "/api/register";
   try {
     dispatch({ type: USER_REGISTER_REQUEST });
     const { data } = await axios.post(url, formData, {
@@ -42,7 +42,7 @@ export const userRegister = (formData) => async (dispatch) => {
 
 // user login action
 export const userLogin = (formData) => async (dispatch) => {
-  const url = "http://localhost:5000/api/login";
+  const url = "/api/login";
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
     const { data } = await axios.post(url, formData, {
@@ -62,7 +62,7 @@ export const userLogin = (formData) => async (dispatch) => {
 
 // checking user is already loggein or not
 export const isAlreadyLogedin = () => async (dispatch) => {
-  const url = "http://localhost:5000/api/me";
+  const url = "/api/me";
   try {
     dispatch({ type: IS_USER_LOGEDIN_REQUEST });
     const { data } = await axios.get(url, {
@@ -85,7 +85,7 @@ export const isAlreadyLogedin = () => async (dispatch) => {
 
 // if user is logged in logout action
 export const userLogout = () => async (dispatch) => {
-  const url = "http://localhost:5000/api/logout";
+  const url = "/api/logout";
   try {
     dispatch({ type: USER_LOGOUT_REQUEST });
     const { data } = await axios.get(url, {
@@ -108,7 +108,7 @@ export const userLogout = () => async (dispatch) => {
 
 // get other user info
 export const getOhteruserDetails = (id) => async (dispatch) => {
-  const url = `http://localhost:5000/api/user/${id}`;
+  const url = `/api/user/${id}`;
   try {
     dispatch({ type: GET_OTHER_USER_REQUEST });
     const { data } = await axios.get(url, {

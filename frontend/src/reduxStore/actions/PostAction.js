@@ -10,7 +10,7 @@ import {
 
 // if user is logged in logout action
 export const userNewPost = (text) => async (dispatch) => {
-  const url = "http://localhost:5000/api/post/new";
+  const url = "/api/post/new";
   try {
     dispatch({ type: USER_NEWPOST_REQUEST });
     const { data } = await axios.post(
@@ -36,7 +36,7 @@ export const userNewPost = (text) => async (dispatch) => {
 };
 
 export const fetchallPost = () => async (dispatch) => {
-  const url = "http://localhost:5000/api/fetch/all/post";
+  const url = "/api/fetch/all/post";
   try {
     dispatch({ type: FETCH_ALL_POST_REQUEST });
     const { data } = await axios.get(url, {

@@ -3,7 +3,6 @@ const http = require("http");
 const app = require("./app");
 const socketIO = require("socket.io");
 const ConnectDb = require("./backend/config/db");
-const User = require("./backend/Models/UsersModel");
 
 // Handling Uncaught Exception
 process.on("uncaughtException", (err) => {

@@ -21,7 +21,7 @@ import { uid } from "uid";
 import { notifyError } from "../../../../utils/Messages";
 
 let socket;
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "/";
 
 const Chat = () => {
   const dispatch = useDispatch();
