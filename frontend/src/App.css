@@ -6,9 +6,8 @@
   --black-color-m-light: rgba(0, 0, 0, 0.5);
   --blue-color: #0061fd;
   --blue-color2: #d5e3fc;
-  --red-color:red;
-  --green-color:green;
-  
+  --red-color: red;
+  --green-color: green;
 }
 
 *,
@@ -79,4 +78,8 @@ button {
 
 .Toastify__toast-container--top-right {
   margin-top: 3.5rem;
+}
+
+.react-scroll-to-bottom--css-wrzwb-1tj0vk3 {
+  background-color: red;
 }

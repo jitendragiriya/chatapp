@@ -1,15 +1,14 @@
 // User module is here
-const User = require("../Models/UsersModel");
-
+const User = require("../../Models/UsersModel");
 // Error handler
-const CatchAsyncError = require("../Middlewares/CatchAsyncError");
-const ErrorHandler = require("../Utils/ErrorHandler");
+const CatchAsyncError = require("../../Middlewares/CatchAsyncError");
+const ErrorHandler = require("../../Utils/ErrorHandler");
 
-const sendToken = require("../Utils/SendToken");
+const sendToken = require("../../Utils/SendToken");
 
 // creating some user actions
 
-// 1.==============register user====================
+// ==============register user====================
 exports.registerUser = CatchAsyncError(async (req, res, next) => {
   // taking all the cradatials from your inputs in form
   const { firstName, lastName, email, password, confirmPassword } = req.body;
@@ -35,7 +34,7 @@ exports.registerUser = CatchAsyncError(async (req, res, next) => {
   sendToken(user, 200, res);
 });
 
-// 2.==============login user====================
+//==============login user====================
 exports.loginUser = CatchAsyncError(async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -53,44 +52,37 @@ exports.loginUser = CatchAsyncError(async (req, res, next) => {
   sendToken(user, 200, res);
 });
 
-// 2.==============is user already loggedin====================
+// ==============is user already loggedin====================
 exports.getUserDetails = CatchAsyncError(async (req, res, next) => {
   const user = await User.findById(req.user.id);
-  
   res.status(200).json({
     success: true,
     user,
   });
 });
 
-// 2.==============if user logged in than user logout====================
+// ==============if user logged in than user logout====================
 exports.logoutUser = CatchAsyncError(async (req, res, next) => {
-  res.cookie("mttrhr", null,{
-    expires:new Date(Date.now()),
-    httpOnly:true,
+  res.cookie("mttrhr", null, {
+    expires: new Date(Date.now()),
+    httpOnly: true,
   });
-  
+
   res.status(200).json({
     success: true,
     message: "logout successfully",
   });
 });
 
-// 5.==============getting like from user====================
-exports.likeAPost = CatchAsyncError(async (req, res, next) => {
-  const { like, PostId } = req.body;
-  const likes = {
-    user: req.user._id,
-    name: req.user.username,
-    like,
-  };
-
-  const user = await User.findById(PostId);
-
-  const isLiked = user.likes.find(
-    (li) => li.user.toString() === req.user._id.toString()
-  );
-  if (isLiked) {
-    return next(new ErrorHandler("You are already liked this post.", 401));
+// ======================fetching user data =======================
+exports.getOtherUserDetails = CatchAsyncError(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    return next(new ErrorHandler("user is not found please try again."));
   }
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
 });

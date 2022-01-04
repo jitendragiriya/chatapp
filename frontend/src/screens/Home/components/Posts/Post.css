@@ -36,9 +36,8 @@
 .new-work-post-about {
   display: flex;
   flex-direction: column;
-  margin-top: 0.5rem;
   width: 100%;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .new-work-post-description {
@@ -98,7 +97,6 @@
   }
 
   .new-work-post-about {
-    padding: 0 0.5rem;
+    padding: 0.5rem;
   }
 }
-

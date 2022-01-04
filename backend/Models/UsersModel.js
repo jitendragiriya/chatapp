@@ -2,52 +2,44 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jsonwebtoken = require("jsonwebtoken");
 
-const userSchema = new mongoose.Schema({
-  first_name: {
-    type: String,
-    required: [true, "Please Enter Your first name"],
-    maxlength: [30, "First Name cannot exceed 30 characters"],
-    minlength: [3, "First Name should be more than 3 characters"],
-  },
-  last_name: {
-    type: String,
-    required: [true, "Please Enter your last name"],
-    maxlength: [30, "Last name cannot exceed 30 characters"],
-    minlength: [3, "Last Name should be more than 3 characters"],
-  },
-  email: {
-    type: String,
-    required: [true, "Please Enter Your Name"],
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: [true, "Please Enter your Password!"],
-    minLength: [8, "Password should have more than 8 characters"],
-    select: false,
-  },
-  role: {
-    type: String,
-    default: "user",
-  },
-  messages: [
-    {
-      newMsg: {
-        type: String,
-      },
-      sendAt: {
-        type: Date,
-        default: Date.now(),
-      },
+const userSchema = new mongoose.Schema(
+  {
+    first_name: {
+      type: String,
+      required: [true, "Please Enter Your first name"],
+      maxlength: [30, "First Name cannot exceed 30 characters"],
+      minlength: [3, "First Name should be more than 3 characters"],
     },
-  ],
-  resetPasswordToken: String,
-  resetPasswordExpire: Date,
-  date: {
-    type: Date,
-    default: Date.now,
+    last_name: {
+      type: String,
+      required: [true, "Please Enter your last name"],
+      maxlength: [30, "Last name cannot exceed 30 characters"],
+      minlength: [3, "Last Name should be more than 3 characters"],
+    },
+    email: {
+      type: String,
+      required: [true, "Please Enter Your Name"],
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: [true, "Please Enter your Password!"],
+      minLength: [8, "Password should have more than 8 characters"],
+      select: false,
+    },
+    role: {
+      type: String,
+      default: "user",
+    },
+    profession: {
+      type: String,
+      default: "",
+    },
+    resetPasswordToken: String,
+    resetPasswordExpire: Date,
   },
-});
+  { timestamps: true }
+);
 
 // Hashing password before saving on the server
 userSchema.pre("save", async function (next) {

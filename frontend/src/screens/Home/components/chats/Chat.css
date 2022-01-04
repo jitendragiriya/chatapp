@@ -46,7 +46,6 @@
   display: flex;
   flex-direction: column;
   overflow: auto;
-  position: relative;
   height: 0;
   cursor: pointer;
 }
@@ -91,8 +90,12 @@
 }
 
 .msg-overlay-bubble__container-messages-info h4 {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 500;
+}
+
+.msg-overlay-bubble__container-messages-info span {
+  font-size: 0.8rem;
 }
 
 .msg-overlay-bubble__container-messages-info p {
@@ -110,18 +113,18 @@
 }
 
 .msg-overlay-bubble__message-box {
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  right: 105%;
+  left: 0;
   width: 350px;
-  height: 60vh;
-  border: 1px solid var(--black-color-light);
-  border-top-left-radius: 0.5rem;
+  height: 70vh;
+  max-height: 80vh;
   border-top-right-radius: 0.5rem;
   background-color: var(--white-color);
   z-index: inherit;
   display: none;
   flex-direction: column;
+  border: 1px solid var(--black-color-light);
   box-shadow: 0 3px 15px var(--black-color-m-light);
 }
 
@@ -139,13 +142,14 @@
   flex: 1;
   background-color: var(--white-color);
   overflow: auto;
+  margin-bottom: 0.2rem;
 }
 
 .msg-overlay-bubble__message-box-input {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  height: 40px;
+  height: 100px;
   border-top: 1px solid lightgray;
 }
 
@@ -153,28 +157,24 @@
   width: 100%;
   display: flex;
   height: 100%;
-  align-items: flex-end;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .msg-overlay-bubble__message-box-input > form > textarea {
-  width: 90%;
-  padding: 10px;
+  width: 100%;
+  padding: 0.5rem;
   font-size: 1rem;
   resize: none;
   border-radius: 0.5rem;
   z-index: 1;
-}
-
-.msg-overlay-bubble__message-box-input > form > textarea:focus,
-.msg-overlay-bubble__message-box-input > form > textarea:active {
-  height: 200px;
-  box-shadow: 0 2px 15px var(--black-color-m-light);
+  height: 100%;
 }
 
 .msg-overlay-bubble__message-box-input > form > button {
   border: none;
   cursor: pointer;
-  margin: 0.2rem;
+  margin: 1rem;
 }
 
 /*  Some media queries */
@@ -183,22 +183,17 @@
 
 @media screen and (max-width: 768px) {
   .msg-overlay-bubble__container {
-    width: 40%;
+    width: 45%;
   }
 
   .msg-overlay-bubble__message-box {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 60%;
+    width: 55%;
     height: 60vh;
-    border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-right: 0;
   }
   .msg-overlay-bubble__message-box.bigSize {
-    width: 60%;
-    height: 80vh;
+    width: 55%;
   }
 }
 
@@ -222,6 +217,10 @@
 }
 
 @media screen and (max-width: 540px) {
+  .msg-overlay-bubble__message-box-input > form > textarea:focus,
+  .msg-overlay-bubble__message-box-input > form > textarea:active {
+    height: 100px;
+  }
 }
 
 @media screen and (max-width: 414px) {

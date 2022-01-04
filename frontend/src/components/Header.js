@@ -27,6 +27,7 @@ const Header = () => {
   const showMore = () => {
     setshowmore(!showmore);
   };
+
   if (showmore) {
     setTimeout(() => {
       setshowmore(!showmore);
@@ -163,9 +164,7 @@ const Header = () => {
                   </Link>
                 </div>
                 <div className="global-nav__user-more-log">
-                  <Link to="/">
-                    <span onClick={handleLogout}>Log Out</span>
-                  </Link>
+                    <button onClick={handleLogout}>Log Out</button>
                 </div>
               </div>
             </div>

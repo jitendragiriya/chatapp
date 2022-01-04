@@ -10,7 +10,7 @@ app.use(express.static("public"));
 app.use(express.static("files"));
 app.use(
   cors({
-    origin: "/",
+    origin: "http://localhost:3000",
     credentials: true,
     optionsSuccessStatus: 200,
   })
@@ -18,10 +18,10 @@ app.use(
 const user = require("./backend/routes/UserRoute");
 // api
 app.use("/api", user);
-app.use(express.static(path.join(__dirname, "./frontend/build")));
+// app.use(express.static(path.join(__dirname, "./frontend/build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./frontend/build/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "./frontend/build/index.html"));
+// });
 
 module.exports = app;

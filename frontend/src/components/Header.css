@@ -63,6 +63,7 @@
   align-items: center;
   border-right: 1px solid var(--black-color-light);
   transition: all 1s ease-in-out;
+  min-width: fit-content;
 }
 
 .nav__option {
@@ -71,7 +72,6 @@
   align-items: center;
   justify-content: space-around;
   padding: 5px 1rem;
-  margin: 0 0.2rem;
   color: var(--black-color);
   position: relative;
 }
@@ -109,10 +109,10 @@
   width: 250px;
   background-color: var(--white-color);
   border: 1px solid var(--black-color-light);
-  border-top-left-radius: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
+  border-radius: 0.5rem;
+  border-top-right-radius: 0;
 }
+
 .global-nav__user-more.active {
   display: block;
 }
@@ -155,7 +155,7 @@
 }
 
 .global-nav__user-more-account a,
-.global-nav__user-more-log a {
+.global-nav__user-more-log {
   margin-top: 0.3rem;
   font-size: 0.9rem;
   color: var(--black-color);
@@ -167,6 +167,17 @@
 
 .global-nav__user-more-log {
   padding: 0.5rem;
+  width: 100%;
+}
+
+.global-nav__user-more-log > button {
+  width: 100%;
+  font-size:.9rem;
+  text-align: left;
+}
+
+.global-nav__user-more-log button:hover {
+  cursor: pointer;
 }
 
 .nav__hamburger {
@@ -187,7 +198,7 @@
     position: fixed;
     top: 65px;
     left: -150%;
-    width: 100%;
+    width: fit-content;
     align-items: center;
     justify-content: center;
     background-color: var(--white-color);
@@ -204,23 +215,24 @@
 
   .nav__option {
     flex-direction: row;
-    margin: 0.5rem 0.2rem;
   }
 
   .nav__option__icon > svg {
     margin-right: 0.2rem;
   }
+
+  .global-nav__user-more {
+    border-top-right-radius: 0.5rem;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .global-nav__nav {
-    display: flex;
     flex-direction: column;
-    position: fixed;
     top: 56px;
     left: -100%;
     height: 100%;
-    width: fit-content;
+    width: 50%;
     align-items: flex-start;
     justify-content: flex-start;
     border-right: none;
@@ -230,7 +242,19 @@
   .global-nav__nav.nav__open {
     left: 0;
     height: 100%;
+    width: 50%;
     transform: translateX(0%);
+  }
+
+  .global-nav__user-more {
+    top: 100%;
+    left: 50%;
+    width: 200px;
+    border-top-left-radius: 0;
+  }
+
+  .nav__option {
+    margin: 0.5rem 0;
   }
 }
 
@@ -251,6 +275,6 @@
     width: 175px;
   }
   .global-nav__content {
-  padding: 0 .5rem;
-}
+    padding: 0 0.5rem;
+  }
 }

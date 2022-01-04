@@ -11,6 +11,9 @@ import {
   USER_LOGOUT_REQUEST,
   USER_LOGOUT_SUCCESS,
   USER_LOGOUT_FAIL,
+  GET_OTHER_USER_REQUEST,
+  GET_OTHER_USER_SUCCESS,
+  GET_OTHER_USER_FAIL,
 } from "../constants/UserConstant";
 
 export const userRegisterReducer = (state = { user: {} }, action) => {
@@ -26,9 +29,8 @@ export const userRegisterReducer = (state = { user: {} }, action) => {
 
     case USER_LOGOUT_REQUEST:
       return {
-        process: 20,
+        progress: 20,
         loading: true,
-        isAuthenticated: true,
       };
     case USER_REGISTER_SUCCESS:
     case IS_USER_LOGEDIN_SUCCESS:
@@ -41,7 +43,7 @@ export const userRegisterReducer = (state = { user: {} }, action) => {
       };
     case USER_LOGOUT_SUCCESS:
       return {
-        process: 100,
+        progress: 100,
         loading: false,
         isAuthenticated: false,
         user: null,
@@ -73,6 +75,31 @@ export const userRegisterReducer = (state = { user: {} }, action) => {
         error: action.payload,
       };
 
+    default:
+      return state;
+  }
+};
+
+export const userDetailsReducer = (state = { user: {} }, action) => {
+  switch (action.type) {
+    case GET_OTHER_USER_REQUEST:
+      return {
+        progress: 20,
+        loading: true,
+      };
+    case GET_OTHER_USER_SUCCESS:
+      return {
+        progress: 100,
+        loading: false,
+        user: action.payload,
+      };
+    case GET_OTHER_USER_FAIL:
+      return {
+        progress: 100,
+        loading: false,
+        user: null,
+        error: action.payload,
+      };
     default:
       return state;
   }

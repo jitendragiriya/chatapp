@@ -7,18 +7,27 @@ import EventIcon from "@mui/icons-material/Event";
 import ArticleIcon from "@mui/icons-material/Article";
 import UploadIcon from "@mui/icons-material/Upload";
 import FileIcon from "@mui/icons-material/FileCopy";
+import { useDispatch, useSelector } from "react-redux";
+import { userNewPost } from "../../../../reduxStore/actions/PostAction";
+import { notifySuccess } from "../../../../utils/Messages";
 
 const MyPost = () => {
+  const dispatch = useDispatch();
+  const { message } = useSelector((state) => state.mypost);
   const data = JSON.parse(localStorage.getItem("newPostInputs"));
   const [inputs, setInputs] = useState({
-    newpostdesc: data ? data.newpostdesc : "",
+    text: data ? data.text : "",
   });
+
+  const { text } = inputs;
   const UploadNewPost = (e) => {
     e.preventDefault();
+    dispatch(userNewPost({text}));
   };
 
   const onChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
+
     localStorage.setItem("newPostInputs", JSON.stringify(inputs));
   };
   useEffect(() => {
@@ -33,7 +42,11 @@ const MyPost = () => {
         modalBox.classList.remove("open");
       }
     });
-  }, []);
+    if (message) {
+      notifySuccess(message);
+      modalBox.classList.remove("open");
+    }
+  }, [message]);
   return (
     <Fragment>
       <div className="share-new-post">
@@ -87,8 +100,8 @@ const MyPost = () => {
               rows={3}
               id="new-post-description"
               className="new-post-description"
-              name="newpostdesc"
-              value={inputs.newpostdesc}
+              name="text"
+              value={inputs.text}
               onChange={onChange}
             />
             <input

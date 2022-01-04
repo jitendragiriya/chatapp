@@ -6,7 +6,7 @@ const ConnectDb = require("./backend/config/db");
 const User = require("./backend/Models/UsersModel");
 
 // Handling Uncaught Exception
-process.on("uncaughtException",(err)=>{
+process.on("uncaughtException", (err) => {
   console.log(`Error: ${err.message}`);
   console.log(`Shutting down the server due to Uncaught Exception`);
   process.exit(1);
@@ -27,36 +27,40 @@ const PORT = process.env.PORT || 5000;
 const server = http.createServer(app);
 const IO = socketIO(server);
 
+let users = [];
+
+const adduser = (userId, socketId) => {
+  !users.some((user) => user.userId === userId) &&
+    users.push({ userId, socketId });
+};
+
+const removeuser = (socketId) => {
+  users = users.filter((user) => user.socketId !== socketId);
+};
+
+const getusers = (userId) => {
+  return users.find((user) => user.userId === userId);
+};
+
 IO.on("connection", (socket) => {
-  socket.on("joined", ({ user, id }) => {
-    console.log(user + " joined");
-    socket.emit("welcome", {
-      user: "admin",
-      message: `welcome ${user}.`,
-      id: "admin",
-    });
-    socket.broadcast.emit("userJoined", {
-      user: "admin",
-      message: `${user} is joined`,
-      id,
-    });
+  socket.on("adduser", ({ user }) => {
+    adduser(user, socket.id);
+    IO.emit("onlineUser", users);
   });
 
-  socket.on("chat message", async (msg) => {
-    console.log(msg);
-    const user = await User.findById(msg.userId);
-    user.messages.push({ newMsg: msg.message });
-    user.save();
-    IO.emit("sendMessage", {
-      message: msg.message,
-      id: msg.userId,
-      user: `${msg.firstName} ${msg.lastName}`,
+  socket.on("sendMessage", async ({ senderId, recieverId, message }) => {
+    const user = await getusers(recieverId);
+    IO.to(user.socketId).emit("getMessage", {
+      senderId,
+      message,
+      createdAt:Date.now(),
     });
   });
 
   socket.on("disconnect", () => {
+    removeuser(socket.id);
+    IO.emit("onlineUser", users);
     socket.broadcast.emit("leaved", { user: "Admin", message: "user is left" });
-    console.log("user disconnected");
   });
 });
 
