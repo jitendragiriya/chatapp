@@ -6,7 +6,7 @@ const User = require("../Models/UsersModel");
 
 // checking user is logged in or not.
 
-exports.isAuthenticated = CatchAsyncError(async (req, res, next) => {
+exports.isAuthenticated = CatchAsyncError(async (req, res, next) => { 
   const {mttrhr}  = req.cookies;
 
   if (!mttrhr) {

@@ -9,12 +9,7 @@ const SendToken = (user, statusCode, res) => {
     httpOnly: true,
     path: "/",
   };
-  
-  res.status(statusCode).cookie("mttrhr", token, options).json({
-    success: true,
-    user,
-    token,
-  });
+  res.status(statusCode).cookie("mttrhr", token, options).json(token);
 };
 
 module.exports = SendToken;

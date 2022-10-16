@@ -4,7 +4,7 @@
   "description": "This is the mywork project backend server usnig node js express js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1" ,  
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend"
   },
@@ -18,6 +18,8 @@
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.3",
+    "nodemailer": "^6.8.0",
+    "otp-generator": "^4.0.0",
     "socket.io": "^4.4.0"
   }
 }

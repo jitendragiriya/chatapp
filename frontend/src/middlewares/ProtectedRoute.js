@@ -1,15 +1,23 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Outlet, Navigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import { TOKEN } from "../constants";
+import { LOGIN } from "../constants/urls";
+import { getLocalData } from "../hooks/localStorage";
 
 const ProtectedRoute = () => {
-  const { isAuthenticated, progress } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  //check is user is authenticated or not
+  const redirect = async () => {
+    const token = await getLocalData(TOKEN);
+    if (!token) {
+      navigate(LOGIN);
+    }
+  };
+  useEffect(() => {
+    redirect();
+  }, [navigate]);
 
-  return isAuthenticated && progress === 100 ? (
-    <Outlet />
-  ) : (
-    <Navigate to="/login" />
-  );
+  return <Outlet />;
 };
 
 export default ProtectedRoute;

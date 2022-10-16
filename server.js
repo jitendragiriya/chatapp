@@ -37,8 +37,12 @@ const removeuser = (socketId) => {
   users = users.filter((user) => user.socketId !== socketId);
 };
 
-const getusers = (userId) => {
-  return users.find((user) => user.userId === userId);
+const getusers = async (userId) => {
+  console.log("\nuserid is here",userId);
+
+  const user = await users.find((user) => user.userId === userId);
+  console.log("\nuser is here",user);
+  return user;
 };
 
 IO.on("connection", (socket) => {
@@ -49,10 +53,13 @@ IO.on("connection", (socket) => {
 
   socket.on("sendMessage", async ({ senderId, recieverId, message }) => {
     const user = await getusers(recieverId);
+    if(!user){
+      return;
+    }
     IO.to(user.socketId).emit("getMessage", {
       senderId,
       message,
-      createdAt:Date.now(),
+      createdAt: Date.now(),
     });
   });
 

@@ -1,36 +1,35 @@
 const express = require("express");
 const { isAuthenticated } = require("../Middlewares/UserAuth");
 const {
-  registerUser,
-  loginUser,
-  getUserDetails,
-  logoutUser,
-  getOtherUserDetails,
-} = require("../controllers/user/UserController");
+  authUser,
+  loginWithOTP,
+  verifyEmailOTP,
+} = require("../controllers/auth");
 const {
-  conversation,
-  getMessageWithUsers,
-  getUserconversation,
-} = require("../controllers/user/UserMsgController");
-const { userPostNew } = require("../controllers/user/PostsController");
-const { fetchallPost } = require("../controllers/posts/post");
+  getFriend,
+  addFriend,
+  getAllFriends,
+} = require("../controllers/friend");
+const { updateProfile } = require("../controllers/profile");
+const { getAllUsers } = require("../controllers/peoples");
+const { conversation, getMessageWithUsers, getUserconversation, getChatUser } = require("../controllers/chat");
 const router = express.Router();
 
 // ====================user routes ======================//
-router.post("/register", registerUser);
-router.post("/login", loginUser);
-router.get("/me", isAuthenticated, getUserDetails);
-router.get("/logout", isAuthenticated, logoutUser);
-router.get("/user/:id",isAuthenticated, getOtherUserDetails)
+// router.post("/register", registerUser);
+router.post("/login", loginWithOTP);
+router.post("/verify-email", verifyEmailOTP);
+router.get("/auth", isAuthenticated, authUser);
+router.put("/profile/update", isAuthenticated, updateProfile);
+router.get("/friend", isAuthenticated, getFriend);
+router.post("/friend/add", isAuthenticated, addFriend);
+router.get("/friend/all", isAuthenticated, getAllFriends);
+router.get("/people/all", isAuthenticated, getAllUsers);
 
 //==============chating ============//
 router.post("/conversation", isAuthenticated, conversation);
-router.get("/m/users/all", isAuthenticated, getMessageWithUsers);
-router.get("/messages/all/:id", getUserconversation);
+router.get("/messages/all/:id", isAuthenticated, getUserconversation);
+router.get("/user/:id", isAuthenticated, getChatUser);
 
-//=================post ==================//
-
-router.post("/post/new", isAuthenticated, userPostNew);
-router.get("/fetch/all/post", isAuthenticated, fetchallPost);
 
 module.exports = router;

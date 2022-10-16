@@ -1,59 +1,32 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
-import store from "./reduxStore/store";
-import Login from "./screens/forms/Login";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-import Signup from "./screens/forms/Signup";
-import Header from "./components/Header";
-import Home from "./screens/Home/Home";
-import { isAlreadyLogedin } from "./reduxStore/actions/UserAction";
+import store from "./store";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import LoginPage from "./pages/LoginPage";
+import { HOME_PAGE, LOGIN, VERIFY_EMAIL } from "./constants/urls";
+import { authUser } from "./actions/auth";
+import ChatPage from "./pages/home/ChatPage";
 import ProtectedRoute from "./middlewares/ProtectedRoute";
-import { useSelector } from "react-redux";
-import UserInfo from "./screens/UserProfile/UserInfo";
+import EmailVerification from "./pages/EmailVerification";
 
 function App() {
-  const { isAuthenticated, progress } = useSelector((state) => state.user);
   useEffect(() => {
-    store.dispatch(isAlreadyLogedin());
+    store.dispatch(authUser());
   }, []);
   return (
-    <Fragment>
+    <>
       <Router>
-        <div className="App">
-          <Routes>
-            <Route exact path="/" element={<ProtectedRoute />}>
-              <Route
-                exact
-                path="/"
-                element={
-                  <>
-                    <Header /> <Home />
-                  </>
-                }
-              />
-            </Route>
-            <Route
-              exact
-              path="/user/:id"
-              element={
-                <>
-                  <Header /> <UserInfo />
-                </>
-              }
-            />
-            <Route path="/login" element={<Login />} />
-            <Route exact path="/signup" element={<Signup />} />
-          </Routes>
-          <ToastContainer />
-        </div>
+        <Routes>
+          <Route path={LOGIN} element={<LoginPage />} />
+          <Route path={VERIFY_EMAIL} element={<EmailVerification />} />
+          <Route path={HOME_PAGE} element={<ProtectedRoute />}>
+            <Route path={HOME_PAGE} element={<ChatPage />} />
+          </Route>
+        </Routes>
+        <ToastContainer />
       </Router>
-    </Fragment>
+    </>
   );
 }
 

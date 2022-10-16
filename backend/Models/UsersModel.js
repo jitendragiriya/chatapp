@@ -4,55 +4,19 @@ const jsonwebtoken = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema(
   {
-    first_name: {
+    username: {
       type: String,
-      required: [true, "Please Enter Your first name"],
-      maxlength: [30, "First Name cannot exceed 30 characters"],
-      minlength: [3, "First Name should be more than 3 characters"],
-    },
-    last_name: {
-      type: String,
-      required: [true, "Please Enter your last name"],
-      maxlength: [30, "Last name cannot exceed 30 characters"],
-      minlength: [3, "Last Name should be more than 3 characters"],
     },
     email: {
       type: String,
-      required: [true, "Please Enter Your Name"],
       unique: true,
     },
-    password: {
+    avatar: {
       type: String,
-      required: [true, "Please Enter your Password!"],
-      minLength: [8, "Password should have more than 8 characters"],
-      select: false,
     },
-    role: {
-      type: String,
-      default: "user",
-    },
-    profession: {
-      type: String,
-      default: "",
-    },
-    resetPasswordToken: String,
-    resetPasswordExpire: Date,
   },
   { timestamps: true }
 );
-
-// Hashing password before saving on the server
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) {
-    next();
-  }
-  this.password = await bcrypt.hash(this.password, 10);
-});
-
-// Comparing passwords
-userSchema.methods.comparePassword = function (enteredPassword) {
-  return bcrypt.compare(enteredPassword, this.password);
-};
 
 // generating authToken
 userSchema.methods.getAuthToken = function () {
