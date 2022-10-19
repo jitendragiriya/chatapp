@@ -70,13 +70,6 @@ IO.on("connection", (socket) => {
   });
 });
 
-app.use(express.static("public"));
-app.use(express.static("files"));
-app.use(express.static(path.join(__dirname, "./frontend/build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./frontend/build/index.html"));
-});
-
 server.listen(PORT, () => {
   console.log(`server is listening on http://localhost:${PORT}`);
 });
