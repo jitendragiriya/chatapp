@@ -15,7 +15,7 @@ import {
 } from "../constants/chat";
 
 export const sendMessage = (chatData) => async (dispatch) => {
-  const url = `${BASE_URL}/api/conversation`;
+  const url = `/api/conversation`;
   try {
     dispatch({ type: SEND_MESSAGE_REQUEST });
     const { data } = await axios.post(url, chatData, {
@@ -39,7 +39,7 @@ export const sendMessage = (chatData) => async (dispatch) => {
 
 // get other user info
 export const getChatUser = (id) => async (dispatch) => {
-  const url = `${BASE_URL}/api/user/${id}`;
+  const url = `/api/user/${id}`;
   try {
     dispatch({ type: GET_CHAT_USER_REQ });
     const { data } = await axios.get(url, {
@@ -61,7 +61,7 @@ export const getChatUser = (id) => async (dispatch) => {
 };
 
 export const getAllMessages = (id) => async (dispatch) => {
-  const url = `${BASE_URL}/api/messages/all/${id}`;
+  const url = `/api/messages/all/${id}`;
   try {
     dispatch({ type: USER_MESSAGES_REQUEST });
     const { data } = await axios.get(url, {

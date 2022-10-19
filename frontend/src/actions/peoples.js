@@ -9,7 +9,7 @@ import { getLocalData } from "../hooks/localStorage";
 
 //get all peoples
 export const getAllPeoples = (phone) => async (dispatch) => {
-  const url = `${BASE_URL}/api/people/all`;
+  const url = `/api/people/all`;
   try {
     dispatch({ type: GET_ALL_USERS_REQ });
     const { data } = await axios.get(url, {

@@ -12,7 +12,7 @@ import { getLocalData } from "../hooks/localStorage";
 
 // login with otp
 export const loginWithOTPAction = (email) => async (dispatch) => {
-  const url = `${BASE_URL}/api/login`;
+  const url = `/api/login`;
   try {
     dispatch({ type: GENERATE_OTP_REQUEST });
     const { data } = await axios.post(
@@ -41,7 +41,7 @@ export const loginWithOTPAction = (email) => async (dispatch) => {
 export const authUser = () => async (dispatch) => {
   const token = await getLocalData(TOKEN);
   if (token) {
-    const url = `${BASE_URL}/api/auth`;
+    const url = `/api/auth`;
     try {
       dispatch({ type: AUTH_REQUEST });
       const { data } = await axios.get(url, {

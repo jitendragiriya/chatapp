@@ -9,7 +9,7 @@ import { getLocalData } from "../hooks/localStorage";
 
 // update profile
 export const updateProfileAction = (formData) => async (dispatch) => {
-  const url = `${BASE_URL}/api/profile/update`;
+  const url = `/api/profile/update`;
   try {
     dispatch({ type: UPDATE_PROFILE_REQUEST });
     const { data } = await axios.put(url, formData, {

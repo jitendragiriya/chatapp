@@ -9,7 +9,7 @@ import { getLocalData } from "../hooks/localStorage";
 
 //verify profile email
 export const verifyEmail = (formbody) => async (dispatch) => {
-  let url = `${BASE_URL}/api/verify-email`;
+  let url = `/api/verify-email`;
   try {
     dispatch({ type: VERIFY_EMAIL_REQUEST });
     const { data } = await axios.post(url, formbody, {
